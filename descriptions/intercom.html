@@ -1,0 +1,25 @@
+<img src="photos/Pic03.jpg" align="right">
+Here's that product, a sophisticated aircraft intercom, with about 900 parts
+in a box less than 4" x 5" x 2".  At the top right you can see the CPU
+board, with an 8Kx8 EPROM on the solder side of the board.  When we
+introduced it at a major airshow, one of the competitors was sure it was
+vaporware and the real work was being done by a big box under the counter.
+Our president picked it up and showed him that's all there was.  He was
+speechless and his face turned several colors.
+<br clear=all><br>
+<img src="photos/Pic26.jpg" align="right">
+In the early stages of development, I considered several different
+microcontrollers for the job.  Many had severe limitations for our
+application.  One manufacturer actually told us that we basically were too
+small for them to be interested in our business.  We settled on one of the
+Motorola 68HC11's.  Unfortunately the version we needed with EEPROM and lots
+of EPROM was on allocation and not easy to buy.  As it ended up, we just
+went back to a discrete 65c02 computer on its own board.  Our cost for parts
+and labor was approximately what the HC11 was going to cost anyway--  it
+just took a little more room.  (Again, the EPROM is on the back, making the
+board smaller.)  Since then, it seems like Microchip PICs have practically
+taken over.  The processor in them is really lowsy compared to the 65c02,
+but they have a lot of variations, features, I/O, built-in processor support
+like reset circuit and watchdog timer, etc., have good technical support
+with lots of ap. notes and free assembler etc., and are inexpensive and
+widely available, making them well suited for tiny jobs.

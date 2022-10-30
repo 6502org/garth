@@ -1,0 +1,51 @@
+<img src="photos/Pic09.jpg">
+<br clear=all><br>
+This is the workbench computer (which I call Bench-1) with the LCD, with a
+board-edge connector socket wired to my PIC programmer (above and to the
+right), and a breadboard to simulate part of a product under development (to
+the left of the PIC programmer).  The PIC microcontroller can be programmed
+in the ZIF socket or in-circuit.  Bench-1 is on a 4.5" x 6.5" board with a
+72-contact board-edge connector.  All three boards are from Radio Shack.
+When the Bench-1 computer is used to control the PIC programmer, the A/D and
+D/A converters on Bench-1 are used for making sure Vpp is correct (usually
+13V) and then setting Vdd=5V for programming and anywhere from 2V to 6V for
+verifying, so it's useful for production programming, not just prototyping.
+The larger ribbon cable goes to the printer, and the smaller ribbon cable is
+the link to the PC (or for that matter, to any computer with a text editor
+and that can send plain text out an RS-232 port).  There's a diagram of the
+PIC programmer further down.
+<p>
+<img src="photos/Pic10.jpg" align="right">
+The computer has parts under the LCD as well.  The blue trimmer on the left
+side is for LCD viewing angle adjustment.  The light blue barely-visible
+button under the middle of the LCD (almost covered) is the reset button.
+Barely to the right of that are four annunciator LEDs.  They're mainly for
+debugging, but I've hardly used them.  To the right of the LCD is the
+five-key keypad, with Enter/Yes/Continue,  Cancel/Escape/No/Exit,
+Help/Menu/special,  Up, and Down.  Not visible near the LEDs and keypad is
+the thin piezoelectric beeper soldered to the board so the whole board acts
+as a sounding board.  (It is visible in the next picture.)  The heat sink
+sticking up in the middle is for the 5V linear regulator.
+
+<br clear=all><br>
+<img src="photos/Pic11.jpg" align="right">
+Wire-wrap side.  Generally, green wire is data bus, yellow is address bus,
+blue is I/O, white is control and select lines, red and black are power and
+ground, and orange and purple are data converter data and LEDs.  You can't
+see it well in the picture, but power and ground are distributed in star
+systems from a point just left of the center.  With 4MHz parts, it all seems
+to work fine up to just over 7MHz, so I run it at 5MHz for some margin.
+I've never had a single reliability problem with wire-wrap.  The only
+hardware problems I've had with this computer were from faulty socket
+contacts, and were cleared up by pulling the corresponding IC out of the
+socket and plugging it back in so the contact surfaces would have a
+self-cleaning effect.
+
+<br clear=all><br>
+<img src="photos/Pic08.jpg" align="right">
+Here Bench-1 is plugged into a pair of breadboards for verifying the
+preliminary design of a front panel for a product with two gray-code rotary
+encoders and tons of buttons and LEDs.  The computer has 3  65C22 VIAs, 3
+65C51 ACIAs, and a fast A/D and D/A, but most of the I/O for this one comes
+through the serial port on one of the VIAs.
+<br clear=all><br>

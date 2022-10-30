@@ -1,0 +1,40 @@
+<img src="photos/Pic05.jpg" align="right">
+This is a 6502-controlled automated test equipment (ATE) setup I made and
+programmed at my last place of work in about 1990.  It is shown testing one
+of the products on a board of about 2.25" x 4.5" near the front edge of the
+workbench.  This setup is much more compact than previous ones I had done
+which used some high-doallar Hewlett-Packard and other IEEE-488 equipment
+stacked in a 19" rack.  This new setup had signal generators, DMM, loads,
+amplifiers, power supplies, switching matrices, etc.. in a 3U 19" rack
+cabinet.  It's all controlled by a Cubit 6502 SBC running Forth.  The
+program was about 10,000 lines of compact code.  It would do scores of tests
+on dozens of different models of the products, yet the program and all test
+parameters compiled to about 38KB with Forth headers (or about 28KB
+without).  This project is what really got me going in Forth on the 6502.
+Using Forth, I was able to spend my time figuring out hardware problems
+instead of debugging software.  (Forth does make hardware problems easier to
+figure out.)  After I released the ATE to the production floor for everyday
+use, no one ever found any bugs in it.  I know they used it for at least 8
+years after I made it, and they may still be using it today.  They paid me
+to service it a few times after I left the company, for things like an IC or
+relay that went south, or a cable that became undependable from being flexed
+tens of thousands of times.
+
+<br clear=all><br>
+<img src="photos/Pic04.jpg" align="right">
+Same ATE, with the case open, during development.  I made two sets.  The
+original plan was for up to seven, but that became unnecessary.  This used
+STD bus (which, BTW, stands for "simple to design," not "standard.")  The
+boards are about 4.5 x 6.5", with 56 contacts at the edge connector.
+
+<br clear=all><br>
+<img src="photos/Pic06.jpg" align="right">
+A close-up of the operator interface.  With the earlier setup using the
+HP-9000-series computer, the test operator had a large screen and keyboard,
+which proved troublesome.  The idea here was to only give the operator
+access to what (s)he needed to do.  As it turned out, it would have been
+nice to have the LCD a little bigger than 16-character, 1-line--  maybe a
+40x2.  It fit the bill pretty well though.  Failing test results always got
+printed out so the paper would get rubber-banded to the unit to go back to
+repair.  Optionally, all test results could be printed, or archived for
+later download to a PC to analyze with something like Lotus 1-2-3.

@@ -1,0 +1,18 @@
+<img src="photos/Pic27.jpg" align="right">
+This is an expansion board I made for our son to use with the Commodore 64
+to interface to his model railroad setup or whatever he wanted.  Main I/O is
+through two 26-pin headers.  The DB-25 at the end is for a printer.  The
+board has two 6522's.  Unfortunately, since the 6522 needs the CS lines
+valid before its phase 2 goes up and the C64 doesn't meet that requirement,
+I had to put in a circuit to delay the rising edge of phase 2 but not the
+falling edge.  Since the C64 lacks a reset button, I put one at the top
+left.  The LEDs are driven by buffers to show the status on VIA1PB without
+loading it down.<br clear=all>
+
+<p><img src="photos/Pic28.jpg" align="right">
+Here's the wire-wrap side of the same board.<br clear=all>
+
+<p><img src="diagrams/dia24.jpg" align="right">
+Since the issue of using the 6522 with a C64 has been raised before on the
+forum, here's the notebook page on how that works.
+<br clear=all>
