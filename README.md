@@ -7,7 +7,7 @@ You can run the website locally on a Unix-like machine (e.g. Linux, macOS) with 
 On Ubuntu 18.04 LTS, this will install the requirements:
 
 ```
-$ sudo apt-install -y php7.2-cli php7.2-sqlite3
+$ sudo apt install -y php7.2-cli php7.2-sqlite3
 ```
 
 Start PHP's built-in webserver from the base of this repository:
