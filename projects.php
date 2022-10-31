@@ -1,4 +1,4 @@
-<?php            
+<?php
 echo file_get_contents('./includes/header.html');
 
 require_once './includes/database.php';
@@ -13,19 +13,14 @@ if (isset($_GET['page'])) { $page = intval($_GET['page']); }
 if (isset($_GET['schematic'])) { $schematic = intval($_GET['schematic']); }
 
 // Get the list of Garth's projects from the database.
-$result = @mysql_query("SELECT id, name, short_name FROM GarthWilson_Projects");
-if (!$result) {
-	echo("<p>Error performing query: " . mysql_error() . "<p>");
-	exit();
-	}
+$result = $dbcnx->query("SELECT id, name, short_name FROM GarthWilson_Projects");
+garth_exit_if_db_error($result);
 
 // Get the ID of the last project
-$result = @mysql_query("SELECT id FROM GarthWilson_Projects ORDER BY id DESC LIMIT 1");
-if (!$result) {
-        echo("<p>Error performing query: " . mysql_error() . "<p>");
-        exit();
-       }
-$row = @mysql_fetch_array($result);
+$result = $dbcnx->query("SELECT id FROM GarthWilson_Projects ORDER BY id DESC LIMIT 1");
+garth_exit_if_db_error($result);
+
+$row = $result->fetch();
 $last_project_id = $row['id'];
 
 // If no valid project ID was not select, default to 1.
@@ -34,12 +29,9 @@ if ((!isset($project)) or ($project < 1) or ($project > $last_project_id) ) {
 }
 
 // Get the name, shortened name, and ID of this project.
-$result = @mysql_query("SELECT name, short_name FROM GarthWilson_Projects WHERE id='$project'");
-if (!$result) {
-	echo("<p>Error performing query: " . mysql_error() . "<p>");
-	exit();
-	}
-$row = @mysql_fetch_array($result);
+$result = $dbcnx->query("SELECT name, short_name FROM GarthWilson_Projects WHERE id='$project'");
+garth_exit_if_db_error($result);
+$row =$result->fetch();
 $project_name = $row['name'];
 $project_shortname = $row['short_name'];
 $project_id = $project;
@@ -49,25 +41,20 @@ $prev_project_id = $project_id-1;
 if ($prev_project_id < 1) { $prev_project_id = $last_project_id; }
 
 // If the previous project is valid, get its name.
-$result = @mysql_query("SELECT name, short_name FROM GarthWilson_Projects WHERE id='$prev_project_id'");
-if (!$result) {
-	echo("<p>Error performing query: " . mysql_error() . "<p>");
-	exit();
-}
-$row = @mysql_fetch_array($result);
+$result = $dbcnx->query("SELECT name, short_name FROM GarthWilson_Projects WHERE id='$prev_project_id'");
+garth_exit_if_db_error($result);
+
+$row = $result->fetch();
 $prev_project_name = $row['short_name'];
 
 // Get the ID number of the next project
 $next_project_id = $project_id+1;
-if ($next_project_id > $last_project_id) { $next_project_id = 1; } 
+if ($next_project_id > $last_project_id) { $next_project_id = 1; }
 
 // If the next project is valid, get its name.
-$result = @mysql_query("SELECT name, short_name FROM GarthWilson_Projects WHERE id='$next_project_id'");
-if (!$result) {
-	echo("<p>Error performing query: " . mysql_error() . "<p>");
-	exit();
-}
-$row = @mysql_fetch_array($result);	
+$result = $dbcnx->query("SELECT name, short_name FROM GarthWilson_Projects WHERE id='$next_project_id'");
+garth_exit_if_db_error($result);
+$row = $result->fetch();
 $next_project_name = $row['short_name'];
 
 ?>
@@ -90,38 +77,38 @@ $next_project_name = $row['short_name'];
 
 <!-- Start of Navigation -->
 
-<tr><td bgcolor = "#033B67" colspan="4" width="174"><img src = "spacer.gif" width="174" height = "1"></td></tr>
-<tr><td bgcolor = "#033B67" width="1" height="16"><img src = "spacer.gif" width="1" height="16"></td>
-<td bgcolor="BDD6F7" width="3" height="16"><img src="spacer.gif" width="1" height="16"></td>
+<tr><td bgcolor = "#033B67" colspan="4" width="174"><img src = "images/spacer.gif" width="174" height = "1"></td></tr>
+<tr><td bgcolor = "#033B67" width="1" height="16"><img src = "images/spacer.gif" width="1" height="16"></td>
+<td bgcolor="BDD6F7" width="3" height="16"><img src = "images/spacer.gif" width="1" height="16"></td>
 <td bgcolor="BDD6F7" width="173" height="16">Garth Wilson's Projects</td>
-<td bgcolor = "#033B67" width="1" height="16"><img src = "spacer.gif" width="1" height = "16"></td></tr>
-<tr><td bgcolor = "#033B67" colspan="4"><img src = "spacer.gif" width="174" height = "1"></td></tr>
+<td bgcolor = "#033B67" width="1" height="16"><img src = "images/spacer.gif" width="1" height = "16"></td></tr>
+<tr><td bgcolor = "#033B67" colspan="4"><img src = "images/spacer.gif" width="174" height = "1"></td></tr>
 
 <?php if (!$next_project_id==0): ?>
-<tr><td bgcolor = "#033B67" width="1" height="16"><img src = "spacer.gif" width="1" height="16"></td>
-<td bgcolor="F5F5F5" width="3" height="16"><img src="spacer.gif" width="1" height="16"></td>
+<tr><td bgcolor = "#033B67" width="1" height="16"><img src = "images/spacer.gif" width="1" height="16"></td>
+<td bgcolor="F5F5F5" width="3" height="16"><img src = "images/spacer.gif" width="1" height="16"></td>
 <td bgcolor="F5F5F5" width="173" height="16"><a href="projects.php?project=<?php echo htmlentities($next_project_id) ?>">Next: <?php echo htmlentities($next_project_name) ?></a></td>
-<td bgcolor = "#033B67" width="1" height="16"><img src = "spacer.gif" width="1" height = "16"></td></tr>
-<tr><td bgcolor = "#033B67" colspan="4"><img src = "spacer.gif" width="174" height = "1"></td></tr>
+<td bgcolor = "#033B67" width="1" height="16"><img src = "images/spacer.gif" width="1" height = "16"></td></tr>
+<tr><td bgcolor = "#033B67" colspan="4"><img src = "images/spacer.gif" width="174" height = "1"></td></tr>
 <?php endif; ?>
 
 <?php if (!$prev_project_id==0): ?>
-<tr><td bgcolor = "#033B67" width="1" height="16"><img src = "spacer.gif" width="1" height="16"></td>
-<td bgcolor="F5F5F5" width="3" height="16"><img src="spacer.gif" width="1" height="16"></td>
+<tr><td bgcolor = "#033B67" width="1" height="16"><img src = "images/spacer.gif" width="1" height="16"></td>
+<td bgcolor="F5F5F5" width="3" height="16"><img src = "images/spacer.gif" width="1" height="16"></td>
 <td bgcolor="F5F5F5" width="173" height="16"><a href="projects.php?project=<?php echo htmlentities($prev_project_id) ?>">Prev: <?php echo htmlentities($prev_project_name) ?></a></td>
-<td bgcolor = "#033B67" width="1" height="16"><img src = "spacer.gif" width="1" height = "16"></td></tr>
-<tr><td bgcolor = "#033B67" colspan="4"><img src = "spacer.gif" width="174" height = "1"></td></tr>
+<td bgcolor = "#033B67" width="1" height="16"><img src = "images/spacer.gif" width="1" height = "16"></td></tr>
+<tr><td bgcolor = "#033B67" colspan="4"><img src = "images/spacer.gif" width="174" height = "1"></td></tr>
 <?php endif; ?>
 
-<tr><td bgcolor = "#033B67" width="1" height="16"><img src = "spacer.gif" width="1" height="16"></td>
-<td bgcolor="F5F5F5" width="3" height="16"><img src="spacer.gif" width="1" height="16"></td>
+<tr><td bgcolor = "#033B67" width="1" height="16"><img src = "images/spacer.gif" width="1" height="16"></td>
+<td bgcolor="F5F5F5" width="3" height="16"><img src = "images/spacer.gif" width="1" height="16"></td>
 <td bgcolor="F5F5F5" width="173" height="16"><a href="index.php">Back to Projects Index</a></td>
-<td bgcolor = "#033B67" width="1" height="16"><img src = "spacer.gif" width="1" height = "16"></td></tr>
-<tr><td bgcolor = "#033B67" colspan="4"><img src = "spacer.gif" width="174" height = "1"></td></tr>
+<td bgcolor = "#033B67" width="1" height="16"><img src = "images/spacer.gif" width="1" height = "16"></td></tr>
+<tr><td bgcolor = "#033B67" colspan="4"><img src = "images/spacer.gif" width="174" height = "1"></td></tr>
 
 <!-- End of Navigation -->
 
-<tr><td width="1" height="14"><img src="spacer.gif" width="1" height="14"></td></tr>
+<tr><td width="1" height="14"><img src = "images/spacer.gif" width="1" height="14"></td></tr>
 
 <!--- Start of "Garth Wilson's Projects" --->
 
@@ -130,26 +117,25 @@ $next_project_name = $row['short_name'];
 
 // Get names and id numbers of schematics for this project
 
-$result = @mysql_query("SELECT id, title FROM GarthWilson_Pages WHERE project_id=$project ORDER BY title ASC");
-if (!$result) {
-  echo("<p>Error performing query: " . mysql_error() . "<p>");
-  exit();
-}
+$result = $dbcnx->query("SELECT id, title FROM GarthWilson_Pages WHERE project_id=$project ORDER BY title ASC");
+garth_exit_if_db_error($result);
 
-if (@mysql_num_rows($result) > 0): ?>
+$all_rows = $result->fetchAll();
 
-	<tr><td bgcolor = "#033B67" colspan="4" width="174"><img src = "spacer.gif" width="174" height = "1"></td></tr>
-	<tr><td bgcolor = "#033B67" width="1" height="16"><img src = "spacer.gif" width="1" height="16"></td>
-	<td bgcolor="BDD6F7" width="3" height="16"><img src="spacer.gif" width="1" height="16"></td>
+if (count($all_rows)): ?>
+
+	<tr><td bgcolor = "#033B67" colspan="4" width="174"><img src = "images/spacer.gif" width="174" height = "1"></td></tr>
+	<tr><td bgcolor = "#033B67" width="1" height="16"><img src = "images/spacer.gif" width="1" height="16"></td>
+	<td bgcolor="BDD6F7" width="3" height="16"><img src = "images/spacer.gif" width="1" height="16"></td>
 	<td bgcolor="BDD6F7" width="173" height="16"><?php echo htmlentities($project_shortname) ?> Pages</td>
-	<td bgcolor = "#033B67" width="1" height="16"><img src = "spacer.gif" width="1" height = "16"></td></tr>
-	<tr><td bgcolor = "#033B67" colspan="4"><img src = "spacer.gif" width="174" height = "1"></td></tr>
-	
+	<td bgcolor = "#033B67" width="1" height="16"><img src = "images/spacer.gif" width="1" height = "16"></td></tr>
+	<tr><td bgcolor = "#033B67" colspan="4"><img src = "images/spacer.gif" width="174" height = "1"></td></tr>
+
 	<?php
 
 	// Display each schematic link in the "Schematics" selection table.
 
-	while ( $row = mysql_fetch_array($result) ) {
+	foreach ($all_rows as $row) {
 		echo("<tr><td bgcolor = \"#033B67\" width=\"1\" height=\"16\"><img src = \"images/spacer.gif\" width=\"1\" height=\"16\"></td>\n");
 		echo("<td bgcolor=\"F5F5F5\" width=\"3\" height=\"16\"><img src=\"images/spacer.gif\" width=\"1\" height=\"16\"></td>\n");
 		echo("<td bgcolor=\"F5F5F5\" width=\"173\" height=\"16\">");
@@ -162,7 +148,7 @@ if (@mysql_num_rows($result) > 0): ?>
 
 <!--- End of "Garth Wilson's" Projects --->
 
-<tr><td width="1" height="14"><img src="spacer.gif" width="1" height="14"></td></tr>
+<tr><td width="1" height="14"><img src = "images/spacer.gif" width="1" height="14"></td></tr>
 
 <!--- Start of "Garth's Bench-1 Schematics" --->
 
@@ -170,28 +156,26 @@ if (@mysql_num_rows($result) > 0): ?>
 
 // Get names and id numbers of schematics for this project
 
-$result = @mysql_query("SELECT id, title FROM GarthWilson_Schematics WHERE project_id=$project ORDER BY sort_order, title ASC");
-if (!$result) {
-  echo("<p>Error performing query: " . mysql_error() . "<p>");
-  exit();
-}
+$result = $dbcnx->query("SELECT id, title FROM GarthWilson_Schematics WHERE project_id=$project ORDER BY sort_order, title ASC");
+garth_exit_if_db_error($result);
 
 // If schematics exist for this project, display the "Schematics" selection table.
+$all_rows = $result->fetchAll();
 
-if (@mysql_num_rows($result) > 0): ?>
+if (count($all_rows)): ?>
 
-	<tr><td bgcolor = "#033B67" colspan="4" width="174"><img src = "spacer.gif" width="174" height = "1"></td></tr>
-	<tr><td bgcolor = "#033B67" width="1" height="16"><img src = "spacer.gif" width="1" height="16"></td>
-	<td bgcolor="BDD6F7" width="3" height="16"><img src="spacer.gif" width="1" height="16"></td>
+	<tr><td bgcolor = "#033B67" colspan="4" width="174"><img src = "images/spacer.gif" width="174" height = "1"></td></tr>
+	<tr><td bgcolor = "#033B67" width="1" height="16"><img src = "images/spacer.gif" width="1" height="16"></td>
+	<td bgcolor="BDD6F7" width="3" height="16"><img src = "images/spacer.gif" width="1" height="16"></td>
 	<td bgcolor="BDD6F7" width="173" height="16"><?=$project_shortname?> Drawings</td>
-	<td bgcolor = "#033B67" width="1" height="16"><img src = "spacer.gif" width="1" height = "16"></td></tr>
-	<tr><td bgcolor = "#033B67" colspan="4"><img src = "spacer.gif" width="174" height = "1"></td></tr>
-	
+	<td bgcolor = "#033B67" width="1" height="16"><img src = "images/spacer.gif" width="1" height = "16"></td></tr>
+	<tr><td bgcolor = "#033B67" colspan="4"><img src = "images/spacer.gif" width="174" height = "1"></td></tr>
+
 	<?php
 
 	// Display each schematic link in the "Schematics" selection table.
 
-	while ( $row = mysql_fetch_array($result) ) {
+	foreach ($all_rows as $row) {
 		echo("<tr><td bgcolor = \"#033B67\" width=\"1\" height=\"16\"><img src = \"images/spacer.gif\" width=\"1\" height=\"16\"></td>\n");
 		echo("<td bgcolor=\"F5F5F5\" width=\"3\" height=\"16\"><img src=\"images/spacer.gif\" width=\"1\" height=\"16\"></td>\n");
 		echo("<td bgcolor=\"F5F5F5\" width=\"173\" height=\"16\">");
@@ -221,50 +205,42 @@ if (@mysql_num_rows($result) > 0): ?>
 
 <?php
 if (isset($schematic)) { // Display a schematic page
-	$result = @mysql_query("SELECT title,description,image_filename FROM GarthWilson_Schematics WHERE id=$schematic AND project_id=$project");
-	if (!$result) {
-  		echo("<p>Error performing query: " . mysql_error() . "<p>");
-  		exit();
-		}
-	
-	if ($row=@mysql_fetch_array($result)) {
+	$result = $dbcnx->query("SELECT title,description,image_filename FROM GarthWilson_Schematics WHERE id=$schematic AND project_id=$project");
+	garth_exit_if_db_error($result);
+
+	if ($row = $result->fetch()) {
 		echo("<b>$project_name Drawings: ${row['title']}</b><p>");
 		echo("${row['description']}<p>");
 		echo("<img src=\"diagrams/${row['image_filename']}\">");
 		}
 	else {
-		echo("Schematic not found.  Please select a schematic from the menu at left.");	
+		echo("Schematic not found.  Please select a schematic from the menu at left.");
 		}
 	}
 else {
 	if (!isset($page)) { // Display an information page
-		$result = @mysql_query("SELECT id FROM GarthWilson_Pages WHERE project_id='$project'");
-		if (!$result) {
-			echo("<p>Error performing query: " . mysql_error() . "<p>");
-			exit();
-		}
-		$row=@mysql_fetch_array($result);
+		$result = $dbcnx->query("SELECT id FROM GarthWilson_Pages WHERE project_id='$project'");
+		garth_exit_if_db_error($result);
+
+		$row=$result->fetch();
 		$page=$row['id'];
-		}		
-	
-	$result = @mysql_query("SELECT title,filename FROM GarthWilson_Pages WHERE id='$page' AND project_id='$project'");
-	if (!$result) {
-  		echo("<p>Error performing query: " . mysql_error() . "<p>");
-  		exit();
 		}
-	
-	if ($row=@mysql_fetch_array($result)) {
+
+	$result = $dbcnx->query("SELECT title,filename FROM GarthWilson_Pages WHERE id='$page' AND project_id='$project'");
+	garth_exit_if_db_error($result);
+
+	if ($row=$result->fetch()) {
 		echo("<b>$project_name Pages: ${row['title']}</b><p>");
 
 		$file_content = fread(fopen("descriptions/${row['filename']}","r"),
 		filesize("descriptions/bench-1.html"));
-		echo($file_content); 
+		echo($file_content);
 
 		}
 	else {
-		echo("Page not found.  Please select a page from the menu at left.");	
+		echo("Page not found.  Please select a page from the menu at left.");
 		}
-	
+
 	}
 
 ?>

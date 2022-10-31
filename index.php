@@ -1,4 +1,4 @@
-<?php 
+<?php
 echo file_get_contents('./includes/header.html');
 
 require_once './includes/database.php';
@@ -23,53 +23,50 @@ $dbcnx = garth_get_db_connection();
 
 <!-- Start of Navigation -->
 
-<tr><td bgcolor = "#033B67" colspan="4" width="174"><img src = "spacer.gif" width="174" height = "1"></td></tr>
-<tr><td bgcolor = "#033B67" width="1" height="16"><img src = "spacer.gif" width="1" height="16"></td>
-<td bgcolor="BDD6F7" width="3" height="16"><img src="spacer.gif" width="1" height="16"></td>
+<tr><td bgcolor = "#033B67" colspan="4" width="174"><img src = "images/spacer.gif" width="174" height = "1"></td></tr>
+<tr><td bgcolor = "#033B67" width="1" height="16"><img src = "images/spacer.gif" width="1" height="16"></td>
+<td bgcolor="BDD6F7" width="3" height="16"><img src = "images/spacer.gif" width="1" height="16"></td>
 <td bgcolor="BDD6F7" width="173" height="16">Garth Wilson's Projects</td>
-<td bgcolor = "#033B67" width="1" height="16"><img src = "spacer.gif" width="1" height = "16"></td></tr>
-<tr><td bgcolor = "#033B67" colspan="4"><img src = "spacer.gif" width="174" height = "1"></td></tr>
+<td bgcolor = "#033B67" width="1" height="16"><img src = "images/spacer.gif" width="1" height = "16"></td></tr>
+<tr><td bgcolor = "#033B67" colspan="4"><img src = "images/spacer.gif" width="174" height = "1"></td></tr>
 
-<tr><td bgcolor = "#033B67" width="1" height="16"><img src = "spacer.gif" width="1" height="16"></td>
-<td bgcolor="F5F5F5" width="3" height="16"><img src="spacer.gif" width="1" height="16"></td>
+<tr><td bgcolor = "#033B67" width="1" height="16"><img src = "images/spacer.gif" width="1" height="16"></td>
+<td bgcolor="F5F5F5" width="3" height="16"><img src = "images/spacer.gif" width="1" height="16"></td>
 <td bgcolor="F5F5F5" width="173" height="16"><a href="projects.php">First: Bench-1 Computer</a></td>
-<td bgcolor = "#033B67" width="1" height="16"><img src = "spacer.gif" width="1" height = "16"></td></tr>
-<tr><td bgcolor = "#033B67" colspan="4"><img src = "spacer.gif" width="174" height = "1"></td></tr>
+<td bgcolor = "#033B67" width="1" height="16"><img src = "images/spacer.gif" width="1" height = "16"></td></tr>
+<tr><td bgcolor = "#033B67" colspan="4"><img src = "images/spacer.gif" width="174" height = "1"></td></tr>
 
-<tr><td bgcolor = "#033B67" width="1" height="16"><img src = "spacer.gif" width="1" height="16"></td>
-<td bgcolor="F5F5F5" width="3" height="16"><img src="spacer.gif" width="1" height="16"></td>
+<tr><td bgcolor = "#033B67" width="1" height="16"><img src = "images/spacer.gif" width="1" height="16"></td>
+<td bgcolor="F5F5F5" width="3" height="16"><img src = "images/spacer.gif" width="1" height="16"></td>
 <td bgcolor="F5F5F5" width="173" height="16"><a href="http://6502.org/">Return to 6502.org</a></td>
-<td bgcolor = "#033B67" width="1" height="16"><img src = "spacer.gif" width="1" height = "16"></td></tr>
-<tr><td bgcolor = "#033B67" colspan="4"><img src = "spacer.gif" width="174" height = "1"></td></tr>
+<td bgcolor = "#033B67" width="1" height="16"><img src = "images/spacer.gif" width="1" height = "16"></td></tr>
+<tr><td bgcolor = "#033B67" colspan="4"><img src = "images/spacer.gif" width="174" height = "1"></td></tr>
 
 <!-- End of Navigation -->
 
-<tr><td width="1" height="14"><img src="spacer.gif" width="1" height="14"></td></tr>
+<tr><td width="1" height="14"><img src = "images/spacer.gif" width="1" height="14"></td></tr>
 
 <!--- Start of "Garth Wilson's Projects" --->
 
-<tr><td bgcolor = "#033B67" colspan="4" width="174"><img src = "spacer.gif" width="174" height = "1"></td></tr>
-<tr><td bgcolor = "#033B67" width="1" height="16"><img src = "spacer.gif" width="1" height="16"></td>
-<td bgcolor="BDD6F7" width="3" height="16"><img src="spacer.gif" width="1" height="16"></td>
+<tr><td bgcolor = "#033B67" colspan="4" width="174"><img src = "images/spacer.gif" width="174" height = "1"></td></tr>
+<tr><td bgcolor = "#033B67" width="1" height="16"><img src = "images/spacer.gif" width="1" height="16"></td>
+<td bgcolor="BDD6F7" width="3" height="16"><img src = "images/spacer.gif" width="1" height="16"></td>
 <td bgcolor="BDD6F7" width="173" height="16">Project Index</td>
-<td bgcolor = "#033B67" width="1" height="16"><img src = "spacer.gif" width="1" height = "16"></td></tr>
-<tr><td bgcolor = "#033B67" colspan="4"><img src = "spacer.gif" width="174" height = "1"></td></tr>
+<td bgcolor = "#033B67" width="1" height="16"><img src = "images/spacer.gif" width="1" height = "16"></td></tr>
+<tr><td bgcolor = "#033B67" colspan="4"><img src = "images/spacer.gif" width="174" height = "1"></td></tr>
 
 <?php
 // Get the list of Garth's projects from the database.
-$result = @mysql_query("SELECT id, name, short_name, description, thumbnail_image FROM GarthWilson_Projects");
-if (!$result) {
-	echo("<p>Error performing query: " . mysql_error() . "<p>");
-	exit();
-	}
+$result = $dbcnx->query("SELECT id, name, short_name, description, thumbnail_image FROM GarthWilson_Projects");
+garth_exit_if_db_error($result);
 
-while ( $row = mysql_fetch_array($result) ) {
-	echo("<tr><td bgcolor = \"#033B67\" width=\"1\" height=\"16\"><img src = \"spacer.gif\" width=\"1\" height=\"16\"></td>");
-	echo("<td bgcolor=\"F5F5F5\" width=\"3\" height=\"16\"><img src=\"spacer.gif\" width=\"1\" height=\"16\"></td>");
+foreach($result as $row) {
+	echo("<tr><td bgcolor = \"#033B67\" width=\"1\" height=\"16\"><img src = \"images/spacer.gif\" width=\"1\" height=\"16\"></td>");
+	echo("<td bgcolor=\"F5F5F5\" width=\"3\" height=\"16\"><img src=\"images/spacer.gif\" width=\"1\" height=\"16\"></td>");
 	echo("<td bgcolor=\"F5F5F5\" width=\"173\" height=\"16\"><a href=\"projects.php?project=${row['id']}\">${row['name']}</a></td>");
-	echo("<td bgcolor = \"#033B67\" width=\"1\" height=\"16\"><img src = \"spacer.gif\" width=\"1\" height = \"16\"></td></tr>");
-	echo("<tr><td bgcolor = \"#033B67\" colspan=\"4\"><img src = \"spacer.gif\" width=\"174\" height = \"1\"></td></tr>");
-	}
+	echo("<td bgcolor = \"#033B67\" width=\"1\" height=\"16\"><img src = \"images/spacer.gif\" width=\"1\" height = \"16\"></td></tr>");
+	echo("<tr><td bgcolor = \"#033B67\" colspan=\"4\"><img src = \"images/spacer.gif\" width=\"174\" height = \"1\"></td></tr>");
+}
 
 ?>
 
@@ -83,7 +80,7 @@ while ( $row = mysql_fetch_array($result) ) {
 <!--End Left Navigation Table-->
 
 <!--Start of separator between left nav & right content-->
-<td width="8"><img src = "spacer.gif" width = "8"></td>
+<td width="8"><img src = "images/spacer.gif" width = "8"></td>
 <td width="100%">
 
 <!--Start Right Content Table-->
@@ -102,33 +99,30 @@ hand-held HP computers that have been sources of inspiration.
 <p>
 <table border="0" cellpadding="0" cellspacing="0">
 <tr>
-<td width="20" height="120"><img src="spacer.gif" width="20" height="120"></td>
+<td width="20" height="120"><img src = "images/spacer.gif" width="20" height="120"></td>
 
-<?php 
+<?php
 // Get the list of Garth's projects from the database.
-$result = @mysql_query("SELECT id, name, short_name, description, thumbnail_image FROM GarthWilson_Projects");
-if (!$result) {
-	echo("<p>Error performing query: " . mysql_error() . "<p>");
-	exit();
-	}
+$result = $dbcnx->query("SELECT id, name, short_name, description, thumbnail_image FROM GarthWilson_Projects");
+garth_exit_if_db_error($result);
 
 $thumb_count = 1;
-   while ( $row = mysql_fetch_array($result) ) {
+	 foreach ($result as $row) {
 
       echo("<td width=\"180\" align=\"left\" valign=\"top\" class=\"smallblack\">");
       echo("<a href=\"projects.php?project=${row['id']}\"><img src=\"thumbnails/${row['thumbnail_image']}\" width=\"180\" height=\"120\" border=\"1\"></a><br clear=all>");
-      echo("<img src=\"spacer.gif\" width=\"5\" height=\"5\"><br clear=all>");
+      echo("<img src=\"images/spacer.gif\" width=\"5\" height=\"5\"><br clear=all>");
       echo("<a href=\"projects.php?project=${row['id']}\">${row['name']}</a>: ${row['description']}</td>");
-      echo("<td width=\"20\" height=\"120\"><img src=\"spacer.gif\" width=\"20\" height=\"120\"></td>");
+      echo("<td width=\"20\" height=\"120\"><img src=\"images/spacer.gif\" width=\"20\" height=\"120\"></td>");
 
       $thumb_count++;
       if ($thumb_count == 4) {
          $thumb_count = 1;
-         echo("</tr><tr><td colspan=\"7\" height=\"20\"><img src=\"spacer.gif\" height=\"20\"></td></tr>");
-         echo("<tr><td width=\"20\" height=\"120\"><img src=\"spacer.gif\" width=\"20\" height=\"120\"></td>");
+         echo("</tr><tr><td colspan=\"7\" height=\"20\"><img src=\"images/spacer.gif\" height=\"20\"></td></tr>");
+         echo("<tr><td width=\"20\" height=\"120\"><img src=\"images/spacer.gif\" width=\"20\" height=\"120\"></td>");
          }
    }
-?>        
+?>
 </table>
 
 </td></tr></table>
