@@ -4,6 +4,7 @@ The HTML and image files for Garth's projects are stored as files in this reposi
 
 ## Requirements
 
+- Make
 - PHP (5.4 through 8.4)
 - Python 3
 - Wget
@@ -13,7 +14,7 @@ On Ubuntu Desktop 24.04 LTS, these commands will install the requirements:
 ```
 $ sudo apt update
 
-$ sudo apt install git php-cli wget
+$ sudo apt install build-essential git php-cli wget
 ```
 
 ## Development
