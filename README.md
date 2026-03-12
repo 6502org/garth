@@ -1,35 +1,56 @@
 # Garth Wilson's Project Pages
 
-The HTML and image files for Garth's projects are stored as files this repository.  The index and the links between them are stored in the SQLite3 database file `database.sqlite3`.
+The HTML and image files for Garth's projects are stored as files in this repository.  The index and the links between them are stored in the `projects.json` file.
 
-You can run the website locally on a Unix-like machine (e.g. Linux, macOS) with PHP 5.4 through 8.4.  The `pdo_sqlite` extension must also be installed.
+## Requirements
 
-On Ubuntu Desktop 24.04 LTS, these commands will install the requirements:
+- PHP (5.4 through 8.4)
+- Python 3
+- Wget
+
+On Ubuntu Desktop 24.04 LTS:
 
 ```
 $ sudo add-apt-repository ppa:ondrej/php
-
 $ sudo apt update
-
-$ sudo apt install git php8.4-cli php8.4-sqlite3
+$ sudo apt install git php8.4-cli wget
 ```
 
-Start PHP's built-in webserver from the base of this repository:
+## Development
+
+Clone the repository:
 
 ```text
-$ git clone https://github.com/6502org/users/garth
+$ git clone https://github.com/6502org/garth.git
 Cloning into 'garth'...
-remote: Enumerating objects: 112, done.
-remote: Counting objects: 100% (112/112), done.
-remote: Compressing objects: 100% (102/102), done.
-remote: Total 112 (delta 11), reused 109 (delta 8), pack-reused 0
-Receiving objects: 100% (112/112), 2.88 MiB | 5.86 MiB/s, done.
-Resolving deltas: 100% (11/11), done.
-
-$ cd garth/
-
-$ php8.4 -S localhost:8000
-[Wed Mar 11 22:51:20 2026] PHP 8.4.11 Development Server (http://localhost:8000) started
+remote: Enumerating objects: 123, done.
+remote: Counting objects: 100% (123/123), done.
+remote: Compressing objects: 100% (111/111), done.
+remote: Total 123 (delta 17), reused 116 (delta 10), pack-reused 0 (from 0)
+Receiving objects: 100% (123/123), 2.89 MiB | 11.69 MiB/s, done.
+Resolving deltas: 100% (17/17), done.
 ```
 
-Open a browser to http://localhost:8000 to view the site.
+Change to that directory and start PHP's built-in webserver:
+
+```
+$ cd garth
+
+$ php8.4 -S localhost:8000 local.php
+```
+
+Open a browser to http://localhost:8000 to view the site.  PHP is used to build the site navigation (header, footer, and sidebar).  Make changes to a file,
+save it, and then reload the page in your browser.  The changes will be reflected immediately.
+
+## Building the Static Site
+
+PHP is only used for development.  It is not intended to be used on the server that hosts the website.  When you have finished development, build a static version of the site and upload those files to the webserver.
+
+To build the static version of the site:
+
+```
+$ make
+```
+
+The static site will be built into the `build/` directory.  Copy the files from `build/` to the webserver.
+

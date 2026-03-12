@@ -1,0 +1,151 @@
+[
+  {
+    "name": "Bench-1 Computer",
+    "short_name": "Bench-1",
+    "description": "An advanced homebuilt 65C802-based single board computer.",
+    "drawings": [
+      {
+        "title": "6551 Crystal Notes",
+        "image": "dia06.jpg"
+      },
+      {
+        "title": "ACIA1 Primary RS-232",
+        "image": "dia05.jpg"
+      },
+      {
+        "title": "ACIA2 Clock Select",
+        "image": "dia07.jpg"
+      },
+      {
+        "title": "ACIA2 MIDI Cable",
+        "image": "dia08.jpg"
+      },
+      {
+        "title": "ACIA3 Tape Modem Interface",
+        "image": "dia09.jpg",
+        "description": "ACIA3 can be used for general RS-232 except that the handshaking lines are not brought out.  The TD and RD lines go through the line driver and receiver (in an MC145406) to a 3.5mm phone jack.  I made a modem years ago for slow but reliable data storage on cassette, but have never really put it to use.  The much faster speed, smaller size, and lower cost per bit of the newer serial EEPROMs or flash memories put the tape to shame. There is some discussion on inexpensive tape modems on the forum, under &quot;Hardware&quot; -->  &quot;eprom programmer:-modem topics (Garth Wilsons thread)&quot; and &quot;Tape modems&quot;."
+      },
+      {
+        "title": "Address Decoding",
+        "image": "dia04.jpg"
+      },
+      {
+        "title": "Board-Edge Connector",
+        "image": "dia16.jpg"
+      },
+      {
+        "title": "LCD, LPT, Keys, Beeper",
+        "image": "dia14.jpg"
+      },
+      {
+        "title": "PIC Programmer",
+        "image": "dia28.jpg"
+      },
+      {
+        "title": "Printer Interface Pinout",
+        "image": "dia15.jpg"
+      },
+      {
+        "title": "Reset Circuit",
+        "image": "dia02.jpg",
+        "description": "The primary RS-232 port is run through ACIA1, a 65C51.  Of the other two ACIAs, only ACIA3 has a line driver and receiver for RS-232 connected, and only for the TD and RD lines, not for any of the handshaking lines. ACIA1 on the other hand has the full complement except for RI, which is not very often used."
+      },
+      {
+        "title": "SS22 Interface",
+        "image": "dia13.jpg",
+        "description": "SS22 was a bidirectional synchronous serial interface to use between computers through their 65c22s (hence the SS22 name) with handshaking. In the early experiments, I found out that unfortunately all makes of the 6522 VIA (including WDC!) have a bug in SR mode 011 where the shift register shifts data in under control of an external shift clock.  The bug is discussed on the forum under &quot;Hardware&quot; --> &quot;WD65C22S -- still has &quot;the bug&quot;?&quot;  The requirement of the flip-flop to remedy the problem made it more complex than I wanted to go here because of the problem of making the clock line bidirectional so that either end could put out a byte whenever, and at whatever speed, it wanted.  So unfortunately, it is basically one direction at a time, determined by the DIP switch setting.  The flip-flop does however make it completely reliable to over 1/2 Mbps on this one."
+      },
+      {
+        "title": "Voltage Regulator",
+        "image": "dia17.jpg"
+      },
+      {
+        "title": "A/D Converter",
+        "image": "dia10.jpg"
+      },
+      {
+        "title": "D/A Converter",
+        "image": "dia12.jpg"
+      }
+    ]
+  },
+  {
+    "name": "Aircraft Intercom",
+    "short_name": "Intercom",
+    "description": "A modern, commercial product based on the 65C02 microprocessor."
+  },
+  {
+    "name": "Ole #1 Computer",
+    "short_name": "Ole #1",
+    "description": "A first attempt at constructing a homebuilt computer."
+  },
+  {
+    "name": "HP Hand-Held Computers",
+    "short_name": "HP Hand-Helds",
+    "description": "A source of inspiration for many 6502-based projects"
+  },
+  {
+    "name": "Portable I/O Computers",
+    "short_name": "I/O Portables",
+    "description": "Small, rugged computers for data collection and general purposes."
+  },
+  {
+    "name": "6502-based ATE",
+    "short_name": "6502 ATE",
+    "description": "A production functional test system based on the 6502 microprocessor."
+  },
+  {
+    "name": "C64 I/O Expansion Board",
+    "short_name": "C64 I/O Board",
+    "description": "An I/O expansion cartridge for the Commodore 64.",
+    "drawings": [
+      {
+        "title": "C64 Exp. Board Notes",
+        "image": "dia25.jpg"
+      },
+      {
+        "title": "Card Edge Connector",
+        "image": "dia21.jpg"
+      },
+      {
+        "title": "Component Layout",
+        "image": "dia22.jpg"
+      },
+      {
+        "title": "LED Bar & LED Drivers",
+        "image": "dia26.jpg"
+      },
+      {
+        "title": "Printer Port Pinout",
+        "image": "dia23.jpg"
+      },
+      {
+        "title": "Reset & Phi-2 Circuits",
+        "image": "dia24.jpg"
+      },
+      {
+        "title": "Short C64 Test Program",
+        "image": "dia27.jpg"
+      }
+    ]
+  },
+  {
+    "name": "Bench-2 Computer",
+    "short_name": "Bench-2",
+    "description": "A second workbench computer, more limited than the Bench-1.",
+    "drawings": [
+      {
+        "title": "Address Decoding",
+        "image": "dia19.jpg"
+      },
+      {
+        "title": "RS-232 Signal Routing",
+        "image": "dia20.jpg"
+      },
+      {
+        "title": "Reset Circuit",
+        "image": "dia18.jpg"
+      }
+    ]
+  }
+]
