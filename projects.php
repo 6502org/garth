@@ -139,7 +139,7 @@ if (count($all_rows)): ?>
 		echo("<tr><td bgcolor = \"#033B67\" width=\"1\" height=\"16\"><img src = \"images/spacer.gif\" width=\"1\" height=\"16\"></td>\n");
 		echo("<td bgcolor=\"F5F5F5\" width=\"3\" height=\"16\"><img src=\"images/spacer.gif\" width=\"1\" height=\"16\"></td>\n");
 		echo("<td bgcolor=\"F5F5F5\" width=\"173\" height=\"16\">");
-		echo ("<a href=\"projects.php?project=$project&page=${row['id']}\">${row['title']}</a></td>\n");
+		echo ("<a href=\"projects.php?project=$project&page={$row['id']}\">{$row['title']}</a></td>\n");
 		echo("<td bgcolor = \"#033B67\" width=\"1\" height=\"16\"><img src = \"images/spacer.gif\" width=\"1\" height = \"16\"></td></tr>\n");
 		echo("<tr><td bgcolor = \"#033B67\" colspan=\"4\"><img src = \"images/spacer.gif\" width=\"174\" height = \"1\"></td></tr>\n");
 		}
@@ -179,7 +179,7 @@ if (count($all_rows)): ?>
 		echo("<tr><td bgcolor = \"#033B67\" width=\"1\" height=\"16\"><img src = \"images/spacer.gif\" width=\"1\" height=\"16\"></td>\n");
 		echo("<td bgcolor=\"F5F5F5\" width=\"3\" height=\"16\"><img src=\"images/spacer.gif\" width=\"1\" height=\"16\"></td>\n");
 		echo("<td bgcolor=\"F5F5F5\" width=\"173\" height=\"16\">");
-		echo ("<a href=\"projects.php?project=$project&schematic=${row['id']}\">${row['title']}</a></td>\n");
+		echo ("<a href=\"projects.php?project=$project&schematic={$row['id']}\">{$row['title']}</a></td>\n");
 		echo("<td bgcolor = \"#033B67\" width=\"1\" height=\"16\"><img src = \"images/spacer.gif\" width=\"1\" height = \"16\"></td></tr>\n");
 		echo("<tr><td bgcolor = \"#033B67\" colspan=\"4\"><img src = \"images/spacer.gif\" width=\"174\" height = \"1\"></td></tr>\n");
 		}
@@ -209,9 +209,9 @@ if (isset($schematic)) { // Display a schematic page
 	garth_exit_if_db_error($result);
 
 	if ($row = $result->fetch()) {
-		echo("<b>$project_name Drawings: ${row['title']}</b><p>");
-		echo("${row['description']}<p>");
-		echo("<img src=\"diagrams/${row['image_filename']}\">");
+		echo("<b>$project_name Drawings: {$row['title']}</b><p>");
+		echo("{$row['description']}<p>");
+		echo("<img src=\"diagrams/{$row['image_filename']}\">");
 		}
 	else {
 		echo("Schematic not found.  Please select a schematic from the menu at left.");
@@ -230,9 +230,9 @@ else {
 	garth_exit_if_db_error($result);
 
 	if ($row=$result->fetch()) {
-		echo("<b>$project_name Pages: ${row['title']}</b><p>");
+		echo("<b>$project_name Pages: {$row['title']}</b><p>");
 
-		$file_content = fread(fopen("descriptions/${row['filename']}","r"),
+		$file_content = fread(fopen("descriptions/{$row['filename']}","r"),
 		filesize("descriptions/bench-1.html"));
 		echo($file_content);
 

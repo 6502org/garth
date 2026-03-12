@@ -2,12 +2,16 @@
 
 The HTML and image files for Garth's projects are stored as files this repository.  The index and the links between them are stored in the SQLite3 database file `database.sqlite3`.
 
-You can run the website locally on a Unix-like machine (e.g. Linux, macOS) with PHP 5.4 or later.  The `pdo_sqlite` extension must also be installed.
+You can run the website locally on a Unix-like machine (e.g. Linux, macOS) with PHP 5.4 through 8.4.  The `pdo_sqlite` extension must also be installed.
 
-On Ubuntu 18.04 LTS, this will install the requirements:
+On Ubuntu Desktop 24.04 LTS, these commands will install the requirements:
 
 ```
-$ sudo apt install -y php7.2-cli php7.2-sqlite3
+$ sudo add-apt-repository ppa:ondrej/php
+
+$ sudo apt update
+
+$ sudo apt install git php8.4-cli php8.4-sqlite3
 ```
 
 Start PHP's built-in webserver from the base of this repository:
@@ -24,10 +28,8 @@ Resolving deltas: 100% (11/11), done.
 
 $ cd garth/
 
-$ php -S localhost:8000
-[Sun Oct 30 19:42:27 2022] PHP 7.4.32 Development Server (http://localhost:8000) started
-PHP 7.3.29 Development Server started at Sun Oct 30 21:54:44 2022
-Listening on http://127.0.0.1:8000
+$ php8.4 -S localhost:8000
+[Wed Mar 11 22:51:20 2026] PHP 8.4.11 Development Server (http://localhost:8000) started
 ```
 
 Open a browser to http://localhost:8000 to view the site.

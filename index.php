@@ -63,7 +63,7 @@ garth_exit_if_db_error($result);
 foreach($result as $row) {
 	echo("<tr><td bgcolor = \"#033B67\" width=\"1\" height=\"16\"><img src = \"images/spacer.gif\" width=\"1\" height=\"16\"></td>");
 	echo("<td bgcolor=\"F5F5F5\" width=\"3\" height=\"16\"><img src=\"images/spacer.gif\" width=\"1\" height=\"16\"></td>");
-	echo("<td bgcolor=\"F5F5F5\" width=\"173\" height=\"16\"><a href=\"projects.php?project=${row['id']}\">${row['name']}</a></td>");
+	echo("<td bgcolor=\"F5F5F5\" width=\"173\" height=\"16\"><a href=\"projects.php?project={$row['id']}\">{$row['name']}</a></td>");
 	echo("<td bgcolor = \"#033B67\" width=\"1\" height=\"16\"><img src = \"images/spacer.gif\" width=\"1\" height = \"16\"></td></tr>");
 	echo("<tr><td bgcolor = \"#033B67\" colspan=\"4\"><img src = \"images/spacer.gif\" width=\"174\" height = \"1\"></td></tr>");
 }
@@ -110,9 +110,9 @@ $thumb_count = 1;
 	 foreach ($result as $row) {
 
       echo("<td width=\"180\" align=\"left\" valign=\"top\" class=\"smallblack\">");
-      echo("<a href=\"projects.php?project=${row['id']}\"><img src=\"thumbnails/${row['thumbnail_image']}\" width=\"180\" height=\"120\" border=\"1\"></a><br clear=all>");
+      echo("<a href=\"projects.php?project={$row['id']}\"><img src=\"thumbnails/{$row['thumbnail_image']}\" width=\"180\" height=\"120\" border=\"1\"></a><br clear=all>");
       echo("<img src=\"images/spacer.gif\" width=\"5\" height=\"5\"><br clear=all>");
-      echo("<a href=\"projects.php?project=${row['id']}\">${row['name']}</a>: ${row['description']}</td>");
+      echo("<a href=\"projects.php?project={$row['id']}\">{$row['name']}</a>: {$row['description']}</td>");
       echo("<td width=\"20\" height=\"120\"><img src=\"images/spacer.gif\" width=\"20\" height=\"120\"></td>");
 
       $thumb_count++;
