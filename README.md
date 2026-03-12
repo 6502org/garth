@@ -8,12 +8,12 @@ The HTML and image files for Garth's projects are stored as files in this reposi
 - Python 3
 - Wget
 
-On Ubuntu Desktop 24.04 LTS:
+On Ubuntu Desktop 24.04 LTS, these commands will install the requirements:
 
 ```
-$ sudo add-apt-repository ppa:ondrej/php
 $ sudo apt update
-$ sudo apt install git php8.4-cli wget
+
+$ sudo apt install git php-cli wget
 ```
 
 ## Development
@@ -36,7 +36,7 @@ Change to that directory and start PHP's built-in webserver:
 ```
 $ cd garth
 
-$ php8.4 -S localhost:8000 local.php
+$ php -S localhost:8000 local.php
 ```
 
 Open a browser to http://localhost:8000 to view the site.  PHP is used to build the site navigation (header, footer, and sidebar).  Make changes to a file,
