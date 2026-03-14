@@ -74,6 +74,8 @@ include './includes/header.php';
         <?php endforeach; ?>
       </ul>
     </nav>
+
+    <?php include './includes/sidebar_wilson_mines.php'; ?>
   </aside>
 
   <main class="main-content">

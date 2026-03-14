@@ -28,10 +28,7 @@ include './includes/header.php';
       </ul>
     </nav>
 
-    <div class="sidebar-section sidebar-note">
-      <h2>Wilson Mines Co.</h2>
-      <p>Visit <a href="https://wilsonmines.com/">Wilson Mines Co.</a> for my newer work and much more 6502-related information.</p>
-    </div>
+    <?php include './includes/sidebar_wilson_mines.php'; ?>
   </aside>
 
   <main class="main-content">
